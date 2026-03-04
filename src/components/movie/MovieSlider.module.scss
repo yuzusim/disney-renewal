@@ -1,0 +1,155 @@
+@use "styles/variables" as var;
+@use "styles/mixins" as mix;
+
+.sliderWrapper {
+  padding: 20px 0 0;
+  // overflow: hidden;
+
+  // 767px
+  @include mix.respond(mobile) {
+    width: 80%; // 모바일에서 폭 줄이기
+    // margin: 0 auto; // 가운데 정렬
+  }
+
+  // Swiper 기본 컨테이너
+  :global(.swiper) {
+    overflow: visible;
+
+    // 개별 슬라이드
+    .slideItem {
+      position: relative;
+      padding: 4px; // 그라데이션 테두리 두께
+      border-radius: 16px;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05); // 카드 전체 확대
+      }
+
+      // 그라데이션 테두리
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 4px;
+        border-radius: inherit;
+        background: linear-gradient(
+          130deg,
+          rgba(2, 214, 232, 0.9),
+          rgba(255, 255, 255, 0.8)
+        );
+
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none;
+      }
+
+      // 카드 링크
+      .card {
+        display: block;
+        overflow: hidden;
+        border-radius: 12px;
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.8);
+        background: linear-gradient(
+          to bottom,
+          /* 위 → 아래 방향 */ rgba(0, 0, 0, 0.3) 0%,
+          /* 위쪽 연하게 */ rgba(0, 0, 0, 0.8) 100% /* 아래쪽 진하게 */
+        );
+
+        // 포스터 영역
+        .posterWrap {
+          width: 100%;
+          aspect-ratio: 5 / 6; // ⭐ 포스터 비율 고정 (중요)
+          position: relative;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease, filter 0.35s ease;
+
+            display: block;
+          }
+
+          // ⭐ 이미지 아래쪽 그라데이션 오버레이
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%; // 아래쪽 40%만 덮음
+            background: linear-gradient(
+              to top,
+              rgba(0, 0, 0, 0.8),
+              // 아래쪽 진하게
+              rgba(0, 0, 0, 0) // 위쪽 투명
+            );
+            pointer-events: none;
+          }
+        }
+
+        // 영화 정보 영역
+        .info {
+          padding: 12px 30px 14px;
+          min-height: 120px; // ✅ 모든 카드 info 영역 동일 높이
+          // display: flex;
+          // flex-direction: column;
+          // justify-content: space-between; // 타이틀-메타 사이 공간 균일
+
+          // 타이틀 이미지
+          .titleImg {
+            width: 100%;
+            height: 60px;
+            object-fit: contain; // 비율 유지
+            text-align: center;
+            // margin: 0 auto;
+            // padding: 20px 20px 0;
+          }
+
+          // 메타 정보
+          .meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+
+            .ageWrap {
+              display: flex;
+              align-items: center;
+              margin-right: 10px;
+
+              .age {
+                height: 20px;
+                width: auto;
+              }
+            }
+
+            .year {
+              font-size: 14px;
+              color: #aaa;
+            }
+          }
+        }
+      }
+
+      // hover 효과
+      &:hover {
+        &::before {
+          opacity: 1;
+        }
+
+        // .posterWrap img {
+        //   transform: scale(1.05);
+        //   filter: brightness(0.85);
+        // }
+      }
+    }
+  }
+}

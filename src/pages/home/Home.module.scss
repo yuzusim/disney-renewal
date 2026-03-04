@@ -1,0 +1,313 @@
+@use "styles/variables" as var;
+@use "styles/mixins" as mix;
+@use "styles/btn" as btn;
+
+.content {
+  background-color: var.$color-primary;
+
+  // 공통
+  // .sec01,
+  .sec02 {
+    padding: 150px 100px 100px;
+  }
+
+  .sec03,
+  .sec04,
+  .sec05 {
+    padding: 100px;
+  }
+
+  .title {
+    h2 {
+      font-size: 48px;
+    }
+    p {
+      font-size: 24px;
+    }
+  }
+
+  .sub_title {
+    p {
+      font-size: 24px;
+    }
+  }
+
+  // 767px
+  @include mix.respond(mobile) {
+    // 공통
+    .sec02 {
+      padding: 120px 32px 70px;
+    }
+
+    .sec03,
+    .sec04,
+    .sec05 {
+      padding: 70px 32px;
+    }
+
+    .title {
+      h2 {
+        font-size: 28px;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 1.5em;
+      }
+    }
+
+    .sub_title {
+      p {
+        font-size: 20px;
+      }
+    }
+  }
+
+  // ===== Section 01 : Main Visual =====
+  .sec01 {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative; // overlay를 위해 필수
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); // 검정 반투명
+      // z-index: 1;
+    }
+
+    .title {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      text-align: center;
+
+      p {
+        line-height: 1.5em;
+      }
+    }
+
+    // 767px
+    @include mix.respond(mobile) {
+      .title {
+        padding: 0 24px;
+
+        h2 {
+          margin-bottom: 50px;
+        }
+
+        p {
+          margin-bottom: 50px;
+
+          br {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  // ===== Section 02 : Movie 인기 콘텐츠 Slider  =====
+  // .sec02 {
+  // }
+
+  // ===== Section 03 :  결제, 지불방법 =====
+  .sec03 {
+    .paymentWrap {
+      display: flex;
+      justify-content: center;
+      align-items: top;
+      gap: 50px;
+      margin-top: 50px;
+
+      .paymentLeft {
+        .priceBox {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 50px;
+          margin-top: 15px;
+
+          .price {
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            text-align: center;
+            cursor: pointer;
+
+            p {
+              margin-bottom: 30px;
+              font-size: 24px;
+            }
+          }
+        }
+
+        .paymenTxt {
+          color: rgba(255, 255, 255, 0.5);
+
+          p {
+            font-size: 22px;
+            margin: 50px 0 20px;
+            line-height: 1.5em;
+          }
+        }
+      }
+
+      // img
+      .paymentRight {
+        width: 750px;
+        height: 600px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    // 767px
+    @include mix.respond(mobile) {
+      .paymentWrap {
+        width: auto;
+        flex-flow: column-reverse;
+
+        .paymentLeft {
+          .priceBox {
+            grid-template-columns: 1fr;
+            gap: 20px;
+
+            .price {
+              width: auto;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              padding: 20px 25px;
+
+              p {
+                margin-bottom: 0;
+                font-size: 18px;
+              }
+            }
+          }
+
+          .paymenTxt {
+            p {
+              font-size: 18px;
+              // margin: 50px 0 20px;
+              text-align: center;
+            }
+
+            span {
+              display: none;
+            }
+          }
+        }
+
+        // img
+        .paymentRight {
+          width: auto;
+          height: 300px;
+          background-size: contain;
+        }
+      }
+    }
+  }
+
+  // ===== Section 04 : 가입해야 하는 또 다른 이유 =====
+  .sec04 {
+    .bannerList {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      text-align: center;
+      padding: 80px 0 0;
+
+      li {
+        position: relative;
+        // background: linear-gradient(90deg, #ffffff, #09f7ff);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1),
+          rgba(9, 247, 255, 0.1)
+        );
+        border-radius: 10px;
+        padding: 40px 20px;
+        cursor: pointer;
+
+        .bnTxtBox {
+          margin: 30px 0;
+
+          h3 {
+            font-size: 22px;
+          }
+
+          p {
+            line-height: 1.5em;
+            margin: 30px 0;
+          }
+        }
+
+        .bnIcon {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          top: -0;
+          left: 50%;
+          // : 0 0 50px 0;
+        }
+      }
+    }
+
+    // 767px
+    @include mix.respond(mobile) {
+      .bannerList {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0;
+
+        li {
+          .bnTxtBox {
+            h3 {
+              font-size: 18px;
+              line-height: 1.5em;
+
+              br {
+                display: none;
+              }
+            }
+
+            p {
+              display: none;
+            }
+          }
+
+          .bnIcon {
+            position: static;
+            transform: none;
+            top: auto;
+            left: auto;
+          }
+        }
+      }
+    }
+  }
+
+  // ===== Section 05 : 자주 묻는 질문 =====
+  .sec05 {
+    text-align: center;
+  }
+
+  // ===== 반응형 =====
+  // 1200px
+  @include mix.respond(desktop-md) {
+  }
+
+  // 1024px
+  @include mix.respond(tablet) {
+  }
+}

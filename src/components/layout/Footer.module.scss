@@ -1,0 +1,101 @@
+@use "styles/variables" as var;
+@use "styles/mixins" as mix;
+
+.footer {
+  background-color: black;
+  padding: 150px 0;
+  text-align: center;
+  margin: 0 auto;
+  color: var.$color-secondary;
+
+  //   .ftIn {
+  //     margin: 0 auto;
+  //   }
+
+  .fLogo {
+    width: 173px;
+    height: 95px;
+    display: block;
+    background-size: contain; /* cover -> contain */
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+  }
+
+  .ftSns {
+    width: 400px;
+    // margin: 0 auto;
+    display: grid;
+    justify-content: center;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
+    font-size: 24px;
+  }
+
+  .ftMenu {
+    width: 1200px;
+    display: grid;
+    justify-content: center;
+    gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+    // color: var.$color-secondary;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.6);
+
+    li {
+      &:hover {
+        // background: #000;
+        color: var.$color-secondary;
+        transition: all 0.5s ease;
+      }
+    }
+  }
+
+  .ftInfo {
+    p {
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 2em;
+    }
+  }
+
+  // 767px
+  @include mix.respond(mobile) {
+    padding: 100px 32px;
+
+    .ftIn {
+      width: auto;
+
+      .fLogo {
+        width: 100px;
+        height: 55px;
+      }
+
+      .ftSns {
+        width: auto;
+        padding: 50px 0;
+        font-size: 22px;
+      }
+
+      .ftMenu {
+        width: auto;
+        grid-template-columns: repeat(1, 1fr);
+        padding: 0 0 50px;
+      }
+
+      .ftInfo {
+        p {
+          font-size: 17px;
+
+          br {
+            display: none;
+
+            &.copy {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

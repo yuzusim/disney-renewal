@@ -1,0 +1,97 @@
+@use "styles/variables" as var;
+@use "styles/mixins" as mix;
+
+.faqList {
+  .faqItem {
+    background: rgba(255, 255, 255, 0.05);
+    margin: 24px 0;
+    text-align: start;
+
+    .question {
+      // 질문 버튼
+      width: 100%;
+      padding: 30px;
+      background: none;
+      border: none;
+      color: var.$color-secondary;
+      font-size: 22px;
+      font-weight: 600;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+
+      .icon {
+        // + / − 아이콘
+        font-size: 28px;
+      }
+    }
+
+    .answer {
+      // 답변 영역
+      padding: 0 30px 30px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.7;
+
+      p {
+        line-height: 1.6;
+      }
+
+      // 기본 리스트 (마커 없음)
+      .answerList {
+        margin-top: 20px;
+        padding-left: 0;
+        list-style: none;
+      }
+
+      // 마커가 필요한 경우만
+      .withMarker {
+        list-style: none;
+        padding-left: 20px;
+        line-height: 2em;
+
+        li {
+          position: relative;
+          padding-left: 24px;
+        }
+
+        li::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0.6em; /* 텍스트 기준 정렬 */
+          width: 8px;
+          height: 8px;
+          background-color: var.$background-secondary;
+          border-radius: 50%;
+        }
+      }
+
+      .link {
+        color: #fff;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // 767px
+  @include mix.respond(mobile) {
+    .faqItem {
+      .question {
+        // 질문 버튼
+        font-size: 18px;
+        padding: 20px;
+
+        .icon {
+          // + / − 아이콘
+          font-size: 24px;
+        }
+      }
+
+      .answer {
+        // 답변 영역
+      }
+    }
+  }
+}
