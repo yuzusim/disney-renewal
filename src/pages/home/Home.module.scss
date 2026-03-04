@@ -98,6 +98,8 @@
 
     // 767px
     @include mix.respond(mobile) {
+      background-attachment: scroll;
+
       .title {
         padding: 0 24px;
 
