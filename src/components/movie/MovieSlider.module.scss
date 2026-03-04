@@ -39,7 +39,8 @@
           rgba(255, 255, 255, 0.8)
         );
 
-        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
           linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
@@ -72,7 +73,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.35s ease, filter 0.35s ease;
+            transition:
+              transform 0.35s ease,
+              filter 0.35s ease;
 
             display: block;
           }

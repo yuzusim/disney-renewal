@@ -117,8 +117,9 @@
   }
 
   // ===== Section 02 : Movie 인기 콘텐츠 Slider  =====
-  // .sec02 {
-  // }
+  .sec02 {
+    overflow-x: hidden;
+  }
 
   // ===== Section 03 :  결제, 지불방법 =====
   .sec03 {
