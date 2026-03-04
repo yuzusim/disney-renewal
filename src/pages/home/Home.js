@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React from "react";
 
 import HomeContent from "pages/home/HomeContent";
 import styles from "./Home.module.scss";
